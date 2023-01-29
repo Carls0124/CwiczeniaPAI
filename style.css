@@ -15,10 +15,11 @@ header{
     background-color: rgb(44, 233, 148);
     height: 20%;
     width: 100%;
-    margin: auto;
-    
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 aside{
     background-color: rgb(201, 93, 93);
     height: 70%;
@@ -33,11 +34,12 @@ body{
     height: auto;
 }
 nav{
-    
-    height: 5%;
-    width: 100%;
-    box-sizing: left;
-    background-color: yellow;
+height: 5%;
+width: 100%;
+background-color: yellow;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 main{
     height: 70;
@@ -58,6 +60,7 @@ section img{
     
     
 }
+
 
 
 a.menu{
@@ -89,7 +92,10 @@ footer{
     background-color: rgb(70, 21, 194);
     height: 5%;
     width: 100%;
-    text-align: center;
-    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
 
-}
+
+
