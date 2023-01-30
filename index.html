@@ -1,92 +1,60 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Strona internetowa</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="stylesheet" href="style.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Format</th>
+      <th>Wynik</th>
+    </tr>
+  </thead>
+  <tbody id="table-body">
+  </tbody>
+</table>
 
-</head>
-<body>
+<script>
+let rows = [
+  {date: new Date("2023-01-01"), format: "YYYY-MM-DD"},
+  {date: new Date("2023-02-01"), format: "MM/DD/YYYY"},
+  {date: new Date("2023-03-01"), format: "DD-MM-YYYY"},
+];
 
-        <header>
-            
-            <img src="zsjeciee.png" alt="zdjecie - header"
-            width="1px"
-            height="1px"
-            center />
+let tableBody = document.querySelector("#table-body");
 
-        </header>
-        <nav>
-            <a class="menu" href="#">O mnie</a>
-            <a class="menu" href="#">Aktualności</a>
-            <a class="menu" href="#">Inspiracje</a>
-            <a class="menu" href="#">Kontakt</a>
-        </nav>
-        <main>
-            <aside>
-                <form>
-                    <div class="mb-3">
-                      <label for="exampleInputName" class="form-label">Podaj imię:</label>
-                      <input type="name" class="form-control" id="exampleInputName">
-                      <div id="nameHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                      <label for="exampleInputName" class="form-label">Podaj nazwisko:</label>
-                      <input type="name" class="form-control" id="exampleInputName">
-                      <div id="nameHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Podaj adres:</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                      </div>
-                    <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Podaj hasło:</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3 form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </form>
-            </aside>
-      
-   
-
-            <section>
-                <article>
-                    <h1> Mitchell Kapor </h1> <br>
-                    <p>Getting information off the Internet is like taking a drink from a fire hydrant.</p><br>
-                    <img src="hydrant.jpg" class="rounded mx-auto d-block" alt="woda">
-                    <br>
-                    <button>przycisk</button>
-                </article>
-                
-                <article>
-                        <h1> Mary Kay Ash </h1> <br>
-                        <p>Aerodynamically, the bumble bee shouldn’t be able to fly, but the bumble bee doesn’t know it so it goes on flying anyway.</p>
-                        <img src="trzmiel.webp" class="rounded mx-auto d-block" alt="beee">
-                    <br>
-                    <button>przycisk</button>
-                </article>
-                </section>
-            </main>
-        <footer>
-                                                                      st000pa
-
-
-        </footer>
-        <div class="grid text-center">
-            <div class="g-col-6">.g-col-6</div>
-            <div class="g-col-6">.g-col-6</div>
-          </div>
-
-
-    
-</body>
-</html>
+rows.forEach(row => {
+  let formattedDate;
+  switch (row.format) {
+    case "YYYY-MM-DD":
+      formattedDate = row.date.toISOString().slice(0, 10);
+      break;
+    case "MM/DD/YYYY":
+      formattedDate = row.date.toLocaleDateString("en-US", {
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric"
+      });
+      break;
+    case "DD-MM-YYYY":
+      formattedDate = row.date.toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+      break;
+  }
+  
+  let tableRow = document.createElement("tr");
+  
+  let dateCell = document.createElement("td");
+  dateCell.textContent = row.date;
+  tableRow.appendChild(dateCell);
+  
+  let formatCell = document.createElement("td");
+  formatCell.textContent = row.format;
+  tableRow.appendChild(formatCell);
+  
+  let resultCell = document.createElement("td");
+  resultCell.textContent = formattedDate;
+  tableRow.appendChild(resultCell);
+  
+  tableBody.appendChild(tableRow);
+});
+</script>
